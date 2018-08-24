@@ -13,17 +13,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var cmdf: UITextField!
     @IBOutlet weak var atkf: UITextField!
     @IBOutlet weak var deff: UITextField!
-    @IBOutlet weak var ans: UILabel!
+    var tmp: [Int]!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     @IBAction func calc(_ sender: UIButton) {
-        //Int(lvf.text!)
-        let tmp = dmgCalc(Int(lvf.text!)!, Int(cmdf.text!)!, Int(atkf.text!)!, Int(deff.text!)!)
-        ans.text = String(tmp[0]) + "~" + String(tmp[15])
+        tmp = dmgCalc(Int(lvf.text!)!, Int(cmdf.text!)!, Int(atkf.text!)!, Int(deff.text!)!)
+        //ans.text = String(tmp[0]) + "~" + String(tmp[15])
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc2 = segue.destination as! ViewController2
+        vc2.answer = String(tmp[0]) + "~" + String(tmp[15])
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
